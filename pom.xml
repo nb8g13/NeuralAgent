@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  
+<groupId>Agent1</groupId>
+<artifactId>agent1</artifactId>
+<version>final</version>
+ 
+  <!--  Add dependencies taken from dl4j website -->
+  <dependencies>
+	<dependency>
+    	<groupId>org.deeplearning4j</groupId>
+    	<artifactId>deeplearning4j-core</artifactId>
+    	<version>0.9.1</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.nd4j</groupId>
+    	<artifactId>nd4j-native-platform</artifactId>
+    	<version>0.9.1</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.datavec</groupId>
+    	<artifactId>datavec-api</artifactId>
+    	<version>0.9.1</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-math3</artifactId>
+    	<version>3.6.1</version>
+	</dependency>
+	<dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.5</version>
+   	</dependency>
+   	<dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-log4j12</artifactId>
+       <version>1.7.5</version>
+   	</dependency>
+   	<dependency>
+  		<groupId>mylocal.negosimulator</groupId>
+  		<artifactId>negosimulator</artifactId>
+  		<version>6.1.7</version>
+  		<scope>system</scope>
+  		<systemPath>${project.basedir}\genius\negosimulator.jar</systemPath>
+	</dependency>
+  </dependencies>
+    
+ <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>fully.qualified.MainClass</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+        </plugins>
+ </build>
+</project>
