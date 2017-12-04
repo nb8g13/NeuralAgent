@@ -3,8 +3,8 @@
   
   <modelVersion>4.0.0</modelVersion>
   
-<groupId>Agent1</groupId>
-<artifactId>agent1</artifactId>
+<groupId>Agent2</groupId>
+<artifactId>agent2</artifactId>
 <version>final</version>
  
   <!--  Add dependencies taken from dl4j website -->

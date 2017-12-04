@@ -1,5 +1,8 @@
-package group1;
+package group2;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +33,7 @@ import negotiator.parties.AbstractNegotiationParty;
 import negotiator.parties.NegotiationInfo;
 import negotiator.timeline.TimeLineInfo;
 
-public class Agent1 extends AbstractNegotiationParty {
+public class Agent2 extends AbstractNegotiationParty {
 	
 	private final String description = "NeuralAgent";
 	ComputationGraphConfiguration nn;
@@ -64,7 +67,7 @@ public class Agent1 extends AbstractNegotiationParty {
 	public ComputationGraphConfiguration.GraphBuilder makeGraphBuilder(NeuralNetConfiguration.Builder nnBuilder) {
 		return nnBuilder
 			.weightInit(WeightInit.XAVIER)
-			.learningRate(0.5)
+			.learningRate(0.01)
 			.optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
 			.iterations(1)
 			.graphBuilder();
@@ -208,7 +211,6 @@ public class Agent1 extends AbstractNegotiationParty {
 		}
 			
 		else if(!exploring) {
-			System.out.println("Not exploring");
 			double agreementChance = Double.MIN_VALUE;
 			TimeLineInfo timeline = this.getTimeLine();
 			double start = timeline.getCurrentTime();
@@ -217,8 +219,7 @@ public class Agent1 extends AbstractNegotiationParty {
 				Bid candBid = this.generateRandomBidWithUtility(this.target);
 				INDArray[] testInput = this.buildInput(candBid);
 				INDArray[] testOutput = this.mlnn.output(testInput);
-				System.out.println(testOutput[0].getDouble(0,0));
-					
+				
 				if(testOutput[0].getDouble(0,0) >= agreementChance) {
 					newBid = candBid;
 					agreementChance = testOutput[0].getDouble(0,0);
@@ -292,7 +293,5 @@ public class Agent1 extends AbstractNegotiationParty {
 	public String getDescription() {
 		return this.description;
 	}
-	
-	
 }
 
